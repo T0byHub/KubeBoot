@@ -6,13 +6,35 @@
     <title>YouTube Clone</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebar = document.getElementById('sidebar');
+            const sidebarToggle = document.getElementById('sidebar-toggle');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const searchForm = document.getElementById('search-form');
+
+            mobileMenuButton.addEventListener('click', () => {
+                sidebar.classList.remove('-translate-x-full');
+            });
+
+            sidebarToggle.addEventListener('click', () => {
+                sidebar.classList.add('-translate-x-full');
+            });
+
+            // Store search query in localStorage when form is submitted
+            searchForm.addEventListener('submit', (e) => {
+                const searchInput = searchForm.querySelector('input[name="q"]');
+                localStorage.setItem('lastSearchQuery', searchInput.value);
+            });
+        });
+    </script>
 </head>
 <body class="bg-gray-100">
     <!-- Header -->
     <header class="sticky top-0 bg-white shadow-sm z-50">
         <div class="flex items-center justify-between px-4 py-2">
             <div class="flex items-center">
-                <i class="fas fa-bars text-gray-600 mr-4 text-xl"></i>
+                <i id="mobile-menu-button" class="fas fa-bars text-gray-600 mr-4 text-xl md:hidden"></i>
                 <div class="flex items-center">
                     <i class="fab fa-youtube text-red-600 text-3xl mr-1"></i>
                     <span class="font-bold text-xl">YouTube</span>
@@ -20,12 +42,12 @@
             </div>
             
             <div class="flex-1 max-w-2xl mx-4">
-                <div class="relative">
-                    <input type="text" placeholder="Search" class="w-full border border-gray-300 rounded-l-full py-2 px-4 focus:outline-none focus:border-blue-500">
-                    <button class="absolute right-0 top-0 h-full bg-gray-100 border border-l-0 border-gray-300 rounded-r-full px-5">
+                <form id="search-form" class="relative" action="search.html" method="GET">
+                    <input type="text" name="q" placeholder="Search" class="w-full border border-gray-300 rounded-l-full py-2 px-4 focus:outline-none focus:border-blue-500">
+                    <button type="submit" class="absolute right-0 top-0 h-full bg-gray-100 border border-l-0 border-gray-300 rounded-r-full px-5 hover:bg-gray-200 transition-colors">
                         <i class="fas fa-search text-gray-600"></i>
                     </button>
-                </div>
+                </form>
             </div>
             
             <div class="flex items-center space-x-4">
@@ -39,7 +61,10 @@
     <!-- Main Content -->
     <div class="flex">
         <!-- Sidebar -->
-        <aside class="w-64 bg-white h-screen sticky top-14 hidden md:block">
+        <aside id="sidebar" class="w-64 bg-white h-screen sticky top-14 transform -translate-x-full md:translate-x-0 transition-transform duration-300 fixed z-40">
+            <button id="sidebar-toggle" class="md:hidden absolute right-0 top-0 m-2 p-2 rounded-full hover:bg-gray-200">
+                <i class="fas fa-times"></i>
+            </button>
             <div class="py-4">
                 <div class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                     <i class="fas fa-home mr-4 text-red-600"></i>
@@ -58,7 +83,9 @@
                     <i class="fas fa-photo-video mr-4"></i>
                     <span>Library</span>
                 </div>
-                <div class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                <div class</i>
+classer">
+classclass="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                     <i class="fas fa-history mr-4"></i>
                     <span>History</span>
                 </div>
