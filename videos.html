@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Videos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .infinite-scroll-component {
+            overflow: hidden !important;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Header -->
+    <header class="sticky top-0 bg-white shadow-sm z-50">
+        <div class="flex items-center justify-between px-4 py-2">
+            <div class="flex items-center">
+                <i class="fas fa-bars text-gray-600 mr-4 text-xl"></i>
+                <div class="flex items-center">
+                    <i class="fab fa-youtube text-red-600 text-3xl mr-1"></i>
+                    <span class="font-bold text-xl">YouTube</span>
+                </div>
+            </div>
+            
+            <div class="flex-1 max-w-2xl mx-4">
+                <div class="relative">
+                    <input type="text" placeholder="Search" class="w-full border border-gray-300 rounded-l-full py-2 px-4 focus:outline-none focus:border-blue-500">
+                    <button class="absolute right-0 top-0 h-full bg-gray-100 border border-l-0 border-gray-300 rounded-r-full px-5">
+                        <i class="fas fa-search text-gray-600"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <i class="fas fa-video text-gray-600 text-xl"></i>
+                <i class="fas fa-bell text-gray-600 text-xl"></i>
+                <div class="w-8 h-8 rounded-full bg-blue-500"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white h-screen sticky top-14 hidden md:block">
+            <div class="py-4">
+                <div class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    <i class="fas fa-home mr-4 text-red-600"></i>
+                    <span>Home</span>
+                </div>
+                <div class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    <i class="fas fa-fire mr-4"></i>
+                    <span>Trending</span>
+                </div>
+                <div class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    <i class="fas fa-subscription mr-4"></i>
+                    <span>Subscriptions</span>
+                </div>
+                <hr class="my-2">
+                <div class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    <i class="fas fa-photo-video mr-4"></i>
+                    <span>Library</span>
+                </div>
+                <div class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    <i class="fas fa-history mr-4"></i>
+                    <span>History</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Video Grid with Infinite Scroll -->
+        <main class="flex-1 p-4">
+            <div class="mb-4">
+                <div class="flex space-x-2 overflow-x-auto pb-2">
+                    <button class="px-3 py-1 bg-black text-white rounded-full text-sm whitespace-nowrap">All</button>
+                    <button class="px-3 py-1 bg-gray-200 rounded-full text-sm whitespace-nowrap">Music</button>
+                    <button class="px-3 py-1 bg-gray-200 rounded-full text-sm whitespace-nowrap">Gaming</button>
+                    <button class="px-3 py-1 bg-gray-200 rounded-full text-sm whitespace-nowrap">Live</button>
+                    <button class="px-3 py-1 bg-gray-200 rounded-full text-sm whitespace-nowrap">Programming</button>
+                    <button class="px-3 py-1 bg-gray-200 rounded-full text-sm whitespace-nowrap">Comedy</button>
+                    <button class="px-3 py-1 bg-gray-200 rounded-full text-sm whitespace-nowrap">Podcasts</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="video-container">
+                <!-- Initial videos will be loaded here -->
+                <!-- JavaScript will append more videos when scrolling -->
+            </div>
+
+            <div class="flex justify-center my-8">
+                <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-red-600" id="loading-spinner"></div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Infinite scroll implementation
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('video-container');
+            const spinner = document.getElementById('loading-spinner');
+            let isLoading = false;
+            let page = 1;
+
+            // Initial load
+            loadVideos();
+
+            // Infinite scroll
+            window.addEventListener('scroll', function() {
+                if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500 && !isLoading) {
+                    loadVideos();
+                }
+            });
+
+            function loadVideos() {
+                isLoading = true;
+                spinner.style.display = 'block';
+
+                // Simulate API call delay
+                setTimeout(() => {
+                    // Add 8 new video cards
+                    for (let i = 0; i < 8; i++) {
+                        const videoId = page * 8 + i;
+                        container.appendChild(createVideoCard(
+                            `https://images.pexels.com/photos/${3000000 + videoId}/pexels-photo-${3000000 + videoId}.jpeg`,
+                            `Video Title ${videoId}`,
+                            `Channel ${videoId % 5 + 1}`,
+                            `${Math.floor(Math.random() * 10) + 1}M views`,
+                            `${Math.floor(Math.random() * 60) + 1}:${Math.floor(Math.random() * 60).toString().padStart(2, '0')}`
+                        ));
+                    }
+
+                    page++;
+                    isLoading = false;
+                    spinner.style.display = 'none';
+                }, 1000);
+            }
+
+            function createVideoCard(thumbUrl, title, channel, views, duration) {
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow';
+                card.innerHTML = `
+                    <div class="relative">
+                        <img src="${thumbUrl}" alt="Video thumbnail" class="w-full h-40 object-cover">
+                        <span class="absolute bottom-1 right-1 bg-black text-white text-xs px-1 rounded">${duration}</span>
+                    </div>
+                    <div class="p-3">
+                        <div class="flex">
+                            <div class="w-9 h-9 rounded-full bg-gray-300 mr-3"></div>
+                            <div>
+                                <h3 class="font-medium text-sm line-clamp-2">${title}</h3>
+                                <p class="text-gray-600 text-xs mt-1">${channel}</p>
+                                <p class="text-gray-600 text-xs">${views} • ${Math.floor(Math.random() * 12) + 1} ${['hours', 'days', 'weeks', 'months'][Math.floor(Math.random() * 4)]} ago</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                return card;
+            }
+        });
+    </script>
+</body>
+</html>
