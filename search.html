@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Search Results</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gray-100">
+    <!-- Header with Search Focus -->
+    <header class="sticky top-0 bg-white shadow-sm z-50">
+        <div class="flex items-center justify-between px-4 py-2">
+            <div class="flex items-center">
+                <i class="fas fa-bars text-gray-600 mr-4 text-xl"></i>
+                <div class="flex items-center">
+                    <i class="fab fa-youtube text-red-600 text-3xl mr-1"></i>
+                    <span class="font-bold text-xl">YouTube</span>
+                </div>
+            </div>
+            
+            <div class="flex-1 max-w-2xl mx-4">
+                <div class="relative">
+                    <input type="text" value="web development tutorials" class="w-full border border-gray-300 rounded-l-full py-2 px-4 focus:outline-none focus:border-blue-500">
+                    <button class="absolute right-0 top-0 h-full bg-gray-100 border border-l-0 border-gray-300 rounded-r-full px-5">
+                        <i class="fas fa-search text-gray-600"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <i class="fas fa-video text-gray-600 text-xl"></i>
+                <i class="fas fa-bell text-gray-600 text-xl"></i>
+                <div class="w-8 h-8 rounded-full bg-blue-500"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white h-screen sticky top-14 hidden md:block">
+            <div class="py-4">
+                <div class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    <i class="fas fa-home mr-4"></i>
+                    <span>Home</span>
+                </div>
+                <div class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    <i class="fas fa-fire mr-4"></i>
+                    <span>Trending</span>
+                </div>
+                <div class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    <i class="fas fa-subscription mr-4"></i>
+                    <span>Subscriptions</span>
+                </div>
+                <hr class="my-2">
+                <div class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    <i class="fas fa-photo-video mr-4"></i>
+                    <span>Library</span>
+                </div>
+                <div class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    <i class="fas fa-history mr-4"></i>
+                    <span>History</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Search Results -->
+        <main class="flex-1 p-4">
+            <!-- Filters -->
+            <div class="flex items-center space-x-4 mb-4 text-sm">
+                <button class="flex items-center px-3 py-1 bg-gray-100 rounded-full">
+                    <i class="fas fa-filter mr-2"></i>
+                    <span>Filters</span>
+                </button>
+                <button class="px-3 py-1 bg-gray-800 text-white rounded-full">All</button>
+                <button class="px-3 py-1 bg-gray-100 rounded-full">Videos</button>
+                <button class="px-3 py-1 bg-gray-100 rounded-full">Channels</button>
+                <button class="px-3 py-1 bg-gray-100 rounded-full">Playlists</button>
+                <button class="px-3 py-1 bg-gray-100 rounded-full">Live</button>
+            </div>
+
+            <!-- Search Results Count -->
+            <p class="text-sm text-gray-600 mb-4">About 1,240,000 results for "web development tutorials" (0.45 seconds)</p>
+
+            <!-- Video Results -->
+            <div class="space-y-6">
+                <!-- Video Result 1 -->
+                <div class="flex flex-col md:flex-row">
+                    <div class="w-full md:w-96 h-48 bg-gray-300 rounded-lg overflow-hidden relative mb-2 md:mb-0 md:mr-4">
+                        <img src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg" class="w-full h-full object-cover">
+                        <span class="absolute bottom-1 right-1 bg-black text-white text-xs px-1 rounded">10:30</span>
+                    </div>
+                    <div>
+                        <h3 class="font-medium text-lg">Web Development Full Course - 10 Hours</h3>
+                        <p class="text-sm text-gray-600 mt-1">1.2M views • 3 months ago</p>
+                        <div class="flex items-center mt-2">
+                            <div class="w-8 h-8 rounded-full bg-gray-300 mr-2"></div>
+                            <p class="text-sm text-gray-600">CodeWithHarry</p>
+                        </div>
+                        <p class="text-sm mt-2 line-clamp-2">Learn web development with this complete course for beginners. We'll cover HTML, CSS, JavaScript, and more to get you started with web development.</p>
+                    </div>
+                </div>
+
+                <!-- Video Result 2 -->
+                <div class="flex flex-col md:flex-row">
+                    <div class="w-full md:w-96 h-48 bg-gray-300 rounded-lg overflow-hidden relative mb-2 md:mb-0 md:mr-4">
+                        <img src="https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg" class="w-full h-full object-cover">
+                        <span class="absolute bottom-1 right-1 bg-black text-white text-xs px-1 rounded">15:45</span>
+                    </div>
+                    <div>
+                        <h3 class="font-medium text-lg">Modern JavaScript Tutorial for Beginners</h3>
+                        <p class="text-sm text-gray-600 mt-1">856K views • 1 year ago</p>
+                        <div class="flex items-center mt-2">
+                            <div class="w-8 h-8 rounded-full bg-gray-300 mr-2"></div>
+                            <p class="text-sm text-gray-600">Programming with Mosh</p>
+                        </div>
+                        <p class="text-sm mt-2 line-clamp-2">JavaScript tutorial for beginners will teach you everything you need to know to get started with this powerful programming language.</p>
+                    </div>
+                </div>
+
+                <!-- Channel Result -->
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                    <div class="flex items-center">
+                        <div class="w-16 h-16 rounded-full bg-gray-300 mr-4"></div>
+                        <div>
+                            <h3 class="font-medium">Web Dev Simplified</h3>
+                            <p class="text-sm text-gray-600">1.45M subscribers • 500 videos</p>
+                            <p class="text-sm mt-1 line-clamp-2">Web Dev Simplified is all about teaching web development skills and techniques in an efficient and practical manner.</p>
+                        </div>
+                        <button class="ml-auto px-4 py-1 bg-gray-100 rounded-full text-sm">Subscribe</button>
+                    </div>
+                </div>
+
+                <!-- More video results would go here -->
+            </div>
+
+            <!-- Pagination -->
+            <div class="flex justify-center mt-8">
+                <div class="flex space-x-2">
+                    <button class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="w-10 h-10 flex items-center justify-center bg-gray-800 text-white rounded-full">1</button>
+                    <button class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full">2</button>
+                    <button class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full">3</button>
+                    <button class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full">4</button>
+                    <button class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full">5</button>
+                    <button class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
