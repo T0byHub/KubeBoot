@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Clone</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gray-100">
+    <!-- Header -->
+    <header class="sticky top-0 bg-white shadow-sm z-50">
+        <div class="flex items-center justify-between px-4 py-2">
+            <div class="flex items-center">
+                <i class="fas fa-bars text-gray-600 mr-4 text-xl"></i>
+                <div class="flex items-center">
+                    <i class="fab fa-youtube text-red-600 text-3xl mr-1"></i>
+                    <span class="font-bold text-xl">YouTube</span>
+                </div>
+            </div>
+            
+            <div class="flex-1 max-w-2xl mx-4">
+                <div class="relative">
+                    <input type="text" placeholder="Search" class="w-full border border-gray-300 rounded-l-full py-2 px-4 focus:outline-none focus:border-blue-500">
+                    <button class="absolute right-0 top-0 h-full bg-gray-100 border border-l-0 border-gray-300 rounded-r-full px-5">
+                        <i class="fas fa-search text-gray-600"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <i class="fas fa-video text-gray-600 text-xl"></i>
+                <i class="fas fa-bell text-gray-600 text-xl"></i>
+                <div class="w-8 h-8 rounded-full bg-blue-500"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white h-screen sticky top-14 hidden md:block">
+            <div class="py-4">
+                <div class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    <i class="fas fa-home mr-4 text-red-600"></i>
+                    <span>Home</span>
+                </div>
+                <div class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    <i class="fas fa-fire mr-4"></i>
+                    <span>Trending</span>
+                </div>
+                <div class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    <i class="fas fa-subscription mr-4"></i>
+                    <span>Subscriptions</span>
+                </div>
+                <hr class="my-2">
+                <div class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    <i class="fas fa-photo-video mr-4"></i>
+                    <span>Library</span>
+                </div>
+                <div class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    <i class="fas fa-history mr-4"></i>
+                    <span>History</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Video Grid -->
+        <main class="flex-1 p-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <!-- Video Card 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg" alt="Video thumbnail" class="w-full h-40 object-cover">
+                        <span class="absolute bottom-1 right-1 bg-black text-white text-xs px-1 rounded">10:30</span>
+                    </div>
+                    <div class="p-3">
+                        <div class="flex">
+                            <div class="w-9 h-9 rounded-full bg-gray-300 mr-3"></div>
+                            <div>
+                                <h3 class="font-medium text-sm line-clamp-2">How to build a YouTube clone with Tailwind CSS</h3>
+                                <p class="text-gray-600 text-xs mt-1">Web Dev Simplified</p>
+                                <p class="text-gray-600 text-xs">1.2M views • 3 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Card 2 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg" alt="Video thumbnail" class="w-full h-40 object-cover">
+                        <span class="absolute bottom-1 right-1 bg-black text-white text-xs px-1 rounded">15:45</span>
+                    </div>
+                    <div class="p-3">
+                        <div class="flex">
+                            <div class="w-9 h-9 rounded-full bg-gray-300 mr-3"></div>
+                            <div>
+                                <h3 class="font-medium text-sm line-clamp-2">Amazing nature landscapes in 4K</h3>
+                                <p class="text-gray-600 text-xs mt-1">Nature Channel</p>
+                                <p class="text-gray-600 text-xs">5.7M views • 2 weeks ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional video cards (3-8) would go here with similar structure -->
+            </div>
+        </main>
+    </div>
+</body>
+</html>
