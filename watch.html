@@ -41,10 +41,77 @@
         <!-- Video Player Section -->
         <main class="lg:w-3/4 p-4">
             <div class="bg-black aspect-video w-full">
-                <video id="video-player" class="w-full" controls>
-                    <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+<div class="relative">
+    <video id="video-player" class="w-full" controls>
+        <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div id="player-controls" class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 opacity-0 hover:opacity-100 transition-opacity">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <button id="play-pause" class="text-white">
+                    <i class="fas fa-play"></i>
+                </button>
+                <div class="flex items-center space-x-2">
+                    <span id="current-time" class="text-white text-sm">0:00</span>
+                    <input type="range" id="progress-bar" min="0" max="100" value="0" class="w-64 h-1">
+                    <span id="duration" class="text-white text-sm">0:00</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="text-white">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+                <button class="text-white">
+                    <i class="fas fa-expand"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    const video = document.getElementById('video-player');
+    const playPauseBtn = document.getElementById('play-pause');
+    const progressBar = document.getElementById('progress-bar');
+    const currentTime = document.getElementById('current-time');
+    const duration = document.getElementById('duration');
+
+    // Play/Pause toggle
+    playPauseBtn.addEventListener('click', () => {
+        if (video.paused) {
+            video.play();
+            playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        } else {
+            video.pause();
+            playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+        }
+    });
+
+    // Update progress bar
+    video.addEventListener('timeupdate', () => {
+        const percent = (video.currentTime / video.duration) * 100;
+        progressBar.value = percent;
+        currentTime.textContent = formatTime(video.currentTime);
+    });
+
+    // Set video time when progress bar is changed
+    progressBar.addEventListener('input', () => {
+        const time = (progressBar.value / 100) * video.duration;
+        video.currentTime = time;
+    });
+
+    // Format time as MM:SS
+    function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        seconds = Math.floor(seconds % 60);
+        return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    }
+
+    // Set video duration on metadata load
+    video.addEventListener('loadedmetadata', () => {
+        duration.textContent = formatTime(video.duration);
+    });
+</script>
             </div>
 
             <!-- Video Info -->
